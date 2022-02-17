@@ -15,7 +15,7 @@ function generatePassword () {
     console.log("Character count within allowed range.")
   } else {
     alert("Password length must be at least 8 characters, and no more 128 characters. Please try again.")
-    return
+    return("Try again.")
   }
   var passwordLength = characters;
   console.log(passwordLength);
