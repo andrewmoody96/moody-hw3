@@ -1,11 +1,18 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// Object containing all available characters. Each property contains a different type of character.
+const possible = {
+  upperCase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  lowerCase: "abcdefghijklmnopqrstuvwxyz",
+  numeric: "0123456789",
+  special: "!\"#$%&'()*+,-./:;<=>?@\[\\]^_`{|}~"
+}
+
 function generatePassword () {
-  // console.log("Is this thing on?")
   var characters = prompt("How many characters?")
   if (characters >= 8 && characters <= 128) {
-    console.log("This is working.")
+    console.log("Character count within allowed range.")
   } else {
     alert("Password length must be at least 8 characters, and no more 128 characters. Please try again.")
     return
@@ -16,6 +23,8 @@ function generatePassword () {
   var wantLowerCase = confirm("Would you like to include lowercase letters?")
     if (wantLowerCase === true){
       console.log("Lowercase?: Yes")
+      var randomLower = Math.floor(Math.random() * possible.lowerCase.length);
+      console.log(randomLower);
     } else {
       console.log("Lowercase?: No")
     }
@@ -41,6 +50,8 @@ function generatePassword () {
       console.log("Special?: No")
     }
 }
+
+
 
 // Write password to the #password input
 function writePassword() {
