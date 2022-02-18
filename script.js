@@ -23,7 +23,8 @@ function generatePassword () {
   var wantLowerCase = confirm("Would you like to include lowercase letters?")
     if (wantLowerCase === true){
       console.log("Lowercase?: Yes")
-      var randomLower = Math.floor(Math.random() * possible.lowerCase.length);
+      // Generates a single lower case. -- Need this to loop depending on passwordLength.length
+      var randomLower = possible.lowerCase[Math.floor(Math.random() * possible.lowerCase.length)];
       console.log(randomLower);
     } else {
       console.log("Lowercase?: No")
@@ -32,6 +33,9 @@ function generatePassword () {
   var wantUpperCase = confirm("Would you like to include uppercase letters?")
     if (wantUpperCase === true){
       console.log("Uppercase?: Yes")
+      // Generates a single upper case. -- Need this to loop depending on passwordLength.length
+      var randomUpper = possible.upperCase[Math.floor(Math.random() * possible.upperCase.length)];
+      console.log(randomUpper)
     } else {
       console.log("Uppercase?: No")
     }
@@ -39,6 +43,9 @@ function generatePassword () {
   var wantNumeric = confirm("Would you like to include numeric values?")
     if (wantNumeric === true){
       console.log("Numeric?: Yes")
+      // Generates a single numeric value. -- Need this to loop depending on passwordLength.length
+      var randomNumeric = possible.numeric[Math.floor(Math.random() * possible.numeric.length)];
+      console.log(randomNumeric)
     } else {
       console.log("Numeric?: No")
     }
@@ -46,6 +53,9 @@ function generatePassword () {
   var wantSpecial = confirm("Would you like to include special characters?")
     if (wantSpecial === true){
       console.log("Special?: Yes")
+      // Generates a single special character. -- Need this to loop depending on passwordLength.length
+      var randomSpecial = possible.special[Math.floor(Math.random() * possible.special.length)];
+      console.log(randomSpecial)
     } else {
       console.log("Special?: No")
     }
@@ -63,4 +73,5 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword)
+
