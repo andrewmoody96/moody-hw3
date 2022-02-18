@@ -59,9 +59,26 @@ function generatePassword () {
     } else {
       console.log("Special?: No")
     }
+  // Logs a concatenated string of the var values. 
+  console.log(randomLower+randomUpper+randomNumeric+randomSpecial)
 }
 
 
+
+// Need to loop this function based on passwordLength.length and concatenate the values of randomLower, randomUpper, randomNumeric, & randomSpecial. The result should be the same length as the selected amount of characters.  
+
+
+
+
+
+
+
+// function checkPassword(){
+//   if (wantLowerCase && wantUpperCase && wantNumeric && wantSpecial === false){
+//     console.log("No values selected. Please try again.")
+//     return("No values selected. Please try again.")
+//   }
+// }
 
 // Write password to the #password input
 function writePassword() {
