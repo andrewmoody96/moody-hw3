@@ -1,8 +1,14 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
 
+// Global variables
+var generateBtn = document.querySelector("#generate");
+var wantsUpperCase = true;
+var wantsLowerCase = true;
+var wantsNumeric = true;
+var wantsSpecial = true;
+var password = "I don't know what I'm doing wrong.";
 // Object containing all available characters. Each property contains a different type of character.
-const possible = {
+const possibleChar = {
   upperCase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   lowerCase: "abcdefghijklmnopqrstuvwxyz",
   numeric: "0123456789",
@@ -10,57 +16,18 @@ const possible = {
 }
 
 function generatePassword () {
-  var characters = prompt("How many characters?")
-  if (characters >= 8 && characters <= 128) {
-    console.log("Character count within allowed range.")
-  } else {
-    alert("Password length must be at least 8 characters, and no more 128 characters. Please try again.")
-    return("Try again.")
-  }
-  var passwordLength = characters;
-  console.log(passwordLength);
-
-  var wantLowerCase = confirm("Would you like to include lowercase letters?")
-    if (wantLowerCase === true){
-      console.log("Lowercase?: Yes")
+  var wantsLowerCase = confirm("Would you like to include lowercase letters?")
+    if (wantsLowerCase === true){
       // Generates a single lower case. -- Need this to loop depending on passwordLength.length
-      var randomLower = possible.lowerCase[Math.floor(Math.random() * possible.lowerCase.length)];
+      var randomLower = possibleChar.lowerCase[Math.floor(Math.random() * possibleChar.lowerCase.length)];
       console.log(randomLower);
     } else {
       console.log("Lowercase?: No")
+      wantsLowerCase = false;
     }
-  
-  var wantUpperCase = confirm("Would you like to include uppercase letters?")
-    if (wantUpperCase === true){
-      console.log("Uppercase?: Yes")
-      // Generates a single upper case. -- Need this to loop depending on passwordLength.length
-      var randomUpper = possible.upperCase[Math.floor(Math.random() * possible.upperCase.length)];
-      console.log(randomUpper)
-    } else {
-      console.log("Uppercase?: No")
-    }
-
-  var wantNumeric = confirm("Would you like to include numeric values?")
-    if (wantNumeric === true){
-      console.log("Numeric?: Yes")
-      // Generates a single numeric value. -- Need this to loop depending on passwordLength.length
-      var randomNumeric = possible.numeric[Math.floor(Math.random() * possible.numeric.length)];
-      console.log(randomNumeric)
-    } else {
-      console.log("Numeric?: No")
-    }
-
-  var wantSpecial = confirm("Would you like to include special characters?")
-    if (wantSpecial === true){
-      console.log("Special?: Yes")
-      // Generates a single special character. -- Need this to loop depending on passwordLength.length
-      var randomSpecial = possible.special[Math.floor(Math.random() * possible.special.length)];
-      console.log(randomSpecial)
-    } else {
-      console.log("Special?: No")
-    }
-  // Logs a concatenated string of the var values. 
-  console.log(randomLower+randomUpper+randomNumeric+randomSpecial)
+    // Rinse and repeat process for each password criteria.
+   
+  return(password);
 }
 
 
@@ -70,25 +37,15 @@ function generatePassword () {
 
 
 
-
-
-
-// function checkPassword(){
-//   if (wantLowerCase && wantUpperCase && wantNumeric && wantSpecial === false){
-//     console.log("No values selected. Please try again.")
-//     return("No values selected. Please try again.")
-//   }
-// }
-
 // Write password to the #password input
 function writePassword() {
+  console.log("Click event works.")
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  
   passwordText.value = password;
+  
 
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword)
-
