@@ -194,6 +194,26 @@ function generatePassword() {
   console.log(characterLength);
   var integer = Number(characterLength);
   console.log(integer);
+  
+  var generatedPassword = "";
+
+  // Loop through array to select random values.
+  for (let i = 0; i < integer; i++) {
+    var randomValues = selectedCriteria[Math.floor(Math.random() * selectedCriteria.length)];
+    generatedPassword += randomValues;
+    // console.log(generatedPassword);
+    if (generatedPassword.length = integer){
+    } else {
+      console.log("Not equal")
+    } 
+  }
+
+
+
+
+  
+  console.log(generatedPassword);
+  return(generatedPassword);
 
   // Need to select x number characters (x=integer) from selectedCriteria. 
 }
