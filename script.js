@@ -194,6 +194,8 @@ function generatePassword() {
   console.log(characterLength);
   var integer = Number(characterLength);
   console.log(integer);
+
+  // Need to select x number characters (x=integer) from selectedCriteria. 
 }
 
 // Write password to the #password input
