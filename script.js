@@ -4,33 +4,24 @@
 var generateBtn = document.querySelector("#generate");
 var password = "I don't know what I'm doing wrong.";
 
-const criteriaOptions = {
-  wantsUpperCase: false,
-  wantsLowerCase: false,
-  wantsNumeric: false,
-  wantsSpecial: false,
-};
-
-// Object containing all available characters. Each property contains a different type of character.
+// Object containing all available characters. Each property contains a different type of character. Maybe try using charSET instead of creating array? REVIEW THIS
 const possibleChar = {
   upperCase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   lowerCase: "abcdefghijklmnopqrstuvwxyz",
   numeric: "0123456789",
   special: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~",
 };
-// Object that will populate based on selected criteria in generatePassword()
-let selectedCriteria = [];
 
-// if boolean = true, push that set of characters to an array.
-// Shuffle array to truly randomize.
+// Array that will populate based on selected criteria in generatePassword()
+var selectedCriteria = [];
 
-// Need to loop this function based on passwordLength.length and concatenate the values of randomLower, randomUpper, randomNumeric, & randomSpecial. The result should be the same length as the selected amount of characters.
-
+// Function that populates Array based on selected criteria. Called by writePassword to pass generatedPassword to #password value.
 function generatePassword() {
   var wantsLowerCase = confirm("Would you like to include lowercase letters?");
   var wantsUpperCase = confirm("Would you like to include uppercase letters?");
   var wantsNumeric = confirm("Would you like to include numeric characters?");
   var wantsSpecial = confirm("Would you like to include special characters?");
+  // Listed all combinations of criteria. Updates selectedCriteria according to choices. There's got to be a better way, REVIEW THIS.
   // TTTT
   if (
     wantsLowerCase == true &&
@@ -45,7 +36,6 @@ function generatePassword() {
       ...possibleChar.special,
     ];
   }
-  // Listed all combinations of criteria. Update selectedCriteria accordingly
   // TFTT
   if (
     wantsLowerCase == true &&
@@ -188,43 +178,52 @@ function generatePassword() {
   ) {
     selectedCriteria = [...possibleChar.upperCase];
   }
+  // FFFF
+  // Rudimentary password check. If no criteria is selected, an error message is returned.
+  if (
+    wantsLowerCase == false &&
+    wantsUpperCase == false &&
+    wantsNumeric == false &&
+    wantsSpecial == false
+  ) {
+    return "No criteria selected. Please try again.";
+  }
+
   console.log(selectedCriteria);
   // Takes user input and converts the string into an integer.
   var characterLength = prompt("How many characters? Choose 8-128");
   console.log(characterLength);
   var integer = Number(characterLength);
   console.log(integer);
-  
-  var generatedPassword = "";
-
-  // Loop through array to select random values.
-  for (let i = 0; i < integer; i++) {
-    var randomValues = selectedCriteria[Math.floor(Math.random() * selectedCriteria.length)];
-    generatedPassword += randomValues;
-    // console.log(generatedPassword);
-    if (generatedPassword.length = integer){
-    } else {
-      console.log("Not equal")
-    } 
+  // Displays error message if minimum length isn't met or if maximum length is exceed.
+  if (integer < 8 || integer > 128) {
+    alert(
+      "Password must be a minimum of 8 characters and no more that 128 characters. Please try again."
+    );
+    return "Please try again.";
   }
 
+  var generatedPassword = "";
 
+  for (let i = 0; i < integer; i++) {
+    // Selects random values from selectedCriteria array.
+    var randomValues =
+      selectedCriteria[Math.floor(Math.random() * selectedCriteria.length)];
+    // Adds the randomValues to the generatedPassword variable, resulting in a new value for the string.
+    generatedPassword += randomValues;
+    console.log("Password created.");
+  }
 
-
-  
-  console.log(generatedPassword);
-  return(generatedPassword);
-
-  // Need to select x number characters (x=integer) from selectedCriteria. 
+  // console.log(generatedPassword);
+  return generatedPassword;
 }
 
-// Write password to the #password input
+// Generates password and writes generatedPassword to the #password value.
 function writePassword() {
-  console.log("Click event works.");
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
 
-// Add event listener to generate button
+// When the button is clicked, the writePassword function starts.
 generateBtn.addEventListener("click", writePassword);
