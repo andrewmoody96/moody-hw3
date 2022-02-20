@@ -2,11 +2,14 @@
 
 // Global variables
 var generateBtn = document.querySelector("#generate");
-var wantsUpperCase = true;
-var wantsLowerCase = true;
-var wantsNumeric = true;
-var wantsSpecial = true;
-var password = "I don't know what I'm doing wrong.";  
+var password = "I don't know what I'm doing wrong.";
+
+const criteriaOptions = {
+  wantsUpperCase: false,
+  wantsLowerCase: false,
+  wantsNumeric: false,
+  wantsSpecial: false,
+}
 
 // Object containing all available characters. Each property contains a different type of character.
 const possibleChar = {
@@ -30,20 +33,72 @@ let selectedCriteria = [];
 
 function generatePassword() {
   var wantsLowerCase = confirm("Would you like to include lowercase letters?")
-  // this is setup solely for Lower Case. Need to add to build upon array depending on user choice for individual parameters.
-    if (wantsLowerCase = true) {
-      selectedCriteria = [...possibleChar.lowerCase, ...possibleChar.upperCase, ...possibleChar.numeric, ...possibleChar.special]
-    }
   var wantsUpperCase = confirm("Would you like to include uppercase letters?")
-    // if (wantsUpperCase = true) {
-    //   selectedCriteria = [...possibleChar.upperCase]
-    // }
   var wantsNumeric = confirm("Would you like to include numeric characters?")
   var wantsSpecial = confirm("Would you like to include special characters?")
-
-
-    console.log(selectedCriteria);
+  // TTTT
+  if (wantsLowerCase == true && wantsUpperCase == true && wantsNumeric == true && wantsSpecial == true) {
+      selectedCriteria = [...possibleChar.lowerCase, ...possibleChar.upperCase, ...possibleChar.numeric, ...possibleChar.special]
+    }
+  // Listed all combinations of criteria. Update selectedCriteria accordingly
+  // TFTT
+  if (wantsLowerCase == true && wantsUpperCase == false && wantsNumeric == true && wantsSpecial == true){
+    selectedCriteria = [...possibleChar.lowerCase, ...possibleChar.numeric, ...possibleChar.special]
   }
+  // TTFT
+  if (wantsLowerCase == true && wantsUpperCase == true && wantsNumeric == false && wantsSpecial == true){
+    selectedCriteria = [...possibleChar.lowerCase, ...possibleChar.upperCase, ...possibleChar.special]
+  }
+  // TFFT
+  if (wantsLowerCase == true && wantsUpperCase == false && wantsNumeric == false && wantsSpecial == true) {
+    selectedCriteria = [...possibleChar.lowerCase, ...possibleChar.special]
+  }
+  // TTTF
+  if (wantsLowerCase == true && wantsUpperCase == true && wantsNumeric == true && wantsSpecial == false) {
+    selectedCriteria = [...possibleChar.lowerCase, ...possibleChar.upperCase, ...possibleChar.numeric]
+  }
+  // TFTF
+  if (wantsLowerCase == true && wantsUpperCase == false && wantsNumeric == true && wantsSpecial == false) {
+    selectedCriteria = [...possibleChar.lowerCase, ...possibleChar.numeric]
+  }
+  // TTFF
+  if (wantsLowerCase == true && wantsUpperCase == true && wantsNumeric == false && wantsSpecial == false) {
+    selectedCriteria = [...possibleChar.lowerCase, ...possibleChar.upperCase]
+  }
+  // TFFF
+  if (wantsLowerCase == true && wantsUpperCase == false && wantsNumeric == false && wantsSpecial == false) {
+    selectedCriteria = [...possibleChar.lowerCase]
+  }
+  // FTTT
+  if (wantsLowerCase == false && wantsUpperCase == true && wantsNumeric == true && wantsSpecial == false) {
+    selectedCriteria = [...possibleChar.upperCase, ...possibleChar.numeric, ...possibleChar.special]
+  }
+  // FFTT
+  if (wantsLowerCase == false && wantsUpperCase == false && wantsNumeric == true && wantsSpecial == false) {
+    selectedCriteria = [...possibleChar.numeric, ...possibleChar.special]
+  }
+  // FTFT
+  if (wantsLowerCase == false && wantsUpperCase == true && wantsNumeric == false && wantsSpecial == true) {
+    selectedCriteria = [...possibleChar.upperCase, ...possibleChar.special]
+  }
+  // FFFT
+  if (wantsLowerCase == false && wantsUpperCase == false && wantsNumeric == false && wantsSpecial == true) {
+    selectedCriteria = [...possibleChar.special]
+  }
+  // FTTF
+  if (wantsLowerCase == false && wantsUpperCase == true && wantsNumeric == true && wantsSpecial == false) {
+    selectedCriteria = [...possibleChar.upperCase, ...possibleChar.numeric]
+  }
+  // FFTF
+  if (wantsLowerCase == false && wantsUpperCase == false && wantsNumeric == true && wantsSpecial == false) {
+    selectedCriteria = [...possibleChar.numeric]
+  }
+  // FTFF
+  if (wantsLowerCase == false && wantsUpperCase == true && wantsNumeric == false && wantsSpecial == false) {
+    selectedCriteria = [...possibleChar.upperCase]
+  }
+    console.log(selectedCriteria);
+}
 
 // Write password to the #password input
 function writePassword() {
