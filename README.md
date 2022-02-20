@@ -8,7 +8,7 @@ The application verifies that at least one of the criteria has been selected and
 Once the application has generated and verified the password, the password is displayed on the screen.
 
 ## Screenshot:
-![pictureOfMoody-hw3](/Assets/moody-hw3 screenshot.png)
+![Screenshot of Application](./assets/moody-hw3\ screenshot.png)
 
 
 
